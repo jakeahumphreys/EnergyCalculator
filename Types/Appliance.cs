@@ -10,6 +10,7 @@ namespace EnergyCalculator.Types
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public decimal Watts { get; set; }
+        public decimal StandbyWatts { get; set; }
+        public decimal UsageWatts { get; set; }
     }
 }

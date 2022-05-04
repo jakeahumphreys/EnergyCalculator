@@ -18,7 +18,8 @@ namespace EnergyCalculator
                 {
                     Id = Guid.NewGuid(),
                     Name = txtApplianceName.Text,
-                    Watts = txtApplianceWatts.Value,
+                    StandbyWatts = txtApplianceWatts.Value,
+                    UsageWatts = txtApplianceUsageWatts.Value,
                 };
 
                 lstAppliances.Items.Add(appliance); 
@@ -32,7 +33,7 @@ namespace EnergyCalculator
 
             if(appliance != null)
             {
-                var costPerDay = CalculationService.CalculateDailyCost(appliance.Watts, (decimal)0.27);
+                var costPerDay = CalculationService.CalculateDailyCost(appliance.StandbyWatts, (decimal)0.27);
                 PopulateEnergyFields(costPerDay);
             }
         }
