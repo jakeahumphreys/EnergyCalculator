@@ -29,13 +29,16 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnAddAppliance = new System.Windows.Forms.Button();
+            this.txtApplianceUsageWatts = new System.Windows.Forms.NumericUpDown();
+            this.label3 = new System.Windows.Forms.Label();
             this.txtApplianceWatts = new System.Windows.Forms.NumericUpDown();
             this.txtApplianceName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnAddAppliance = new System.Windows.Forms.Button();
             this.lstAppliances = new System.Windows.Forms.ListBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.cbUsageType = new System.Windows.Forms.ComboBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.txtRoundedYearlyCost = new System.Windows.Forms.TextBox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
@@ -53,9 +56,8 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.txtDailyCost = new System.Windows.Forms.TextBox();
             this.btnRemoveAppliance = new System.Windows.Forms.Button();
-            this.txtApplianceUsageWatts = new System.Windows.Forms.NumericUpDown();
-            this.label3 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtApplianceUsageWatts)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtApplianceWatts)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox7.SuspendLayout();
@@ -66,7 +68,6 @@
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtApplianceUsageWatts)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -84,15 +85,27 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Appliance Details";
             // 
-            // btnAddAppliance
+            // txtApplianceUsageWatts
             // 
-            this.btnAddAppliance.Location = new System.Drawing.Point(480, 108);
-            this.btnAddAppliance.Name = "btnAddAppliance";
-            this.btnAddAppliance.Size = new System.Drawing.Size(120, 23);
-            this.btnAddAppliance.TabIndex = 4;
-            this.btnAddAppliance.Text = "Add Appliance";
-            this.btnAddAppliance.UseVisualStyleBackColor = true;
-            this.btnAddAppliance.Click += new System.EventHandler(this.btnAddAppliance_Click);
+            this.txtApplianceUsageWatts.DecimalPlaces = 1;
+            this.txtApplianceUsageWatts.Location = new System.Drawing.Point(425, 55);
+            this.txtApplianceUsageWatts.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.txtApplianceUsageWatts.Name = "txtApplianceUsageWatts";
+            this.txtApplianceUsageWatts.Size = new System.Drawing.Size(120, 23);
+            this.txtApplianceUsageWatts.TabIndex = 5;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(290, 58);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(130, 15);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Usage Watts (Per Hour)";
             // 
             // txtApplianceWatts
             // 
@@ -132,6 +145,16 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Appliance Name";
             // 
+            // btnAddAppliance
+            // 
+            this.btnAddAppliance.Location = new System.Drawing.Point(480, 108);
+            this.btnAddAppliance.Name = "btnAddAppliance";
+            this.btnAddAppliance.Size = new System.Drawing.Size(120, 23);
+            this.btnAddAppliance.TabIndex = 4;
+            this.btnAddAppliance.Text = "Add Appliance";
+            this.btnAddAppliance.UseVisualStyleBackColor = true;
+            this.btnAddAppliance.Click += new System.EventHandler(this.btnAddAppliance_Click);
+            // 
             // lstAppliances
             // 
             this.lstAppliances.DisplayMember = "Name";
@@ -146,6 +169,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.cbUsageType);
             this.groupBox2.Controls.Add(this.groupBox7);
             this.groupBox2.Controls.Add(this.groupBox8);
             this.groupBox2.Controls.Add(this.groupBox9);
@@ -156,15 +180,28 @@
             this.groupBox2.Controls.Add(this.groupBox3);
             this.groupBox2.Location = new System.Drawing.Point(12, 322);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(588, 272);
+            this.groupBox2.Size = new System.Drawing.Size(588, 318);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Energy Information";
             // 
+            // cbUsageType
+            // 
+            this.cbUsageType.FormattingEnabled = true;
+            this.cbUsageType.Items.AddRange(new object[] {
+            "Standby",
+            "Full"});
+            this.cbUsageType.Location = new System.Drawing.Point(12, 31);
+            this.cbUsageType.Name = "cbUsageType";
+            this.cbUsageType.Size = new System.Drawing.Size(194, 23);
+            this.cbUsageType.TabIndex = 8;
+            this.cbUsageType.Text = "Full";
+            this.cbUsageType.SelectedIndexChanged += new System.EventHandler(this.cbUsageType_SelectedIndexChanged);
+            // 
             // groupBox7
             // 
             this.groupBox7.Controls.Add(this.txtRoundedYearlyCost);
-            this.groupBox7.Location = new System.Drawing.Point(212, 202);
+            this.groupBox7.Location = new System.Drawing.Point(212, 252);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(200, 54);
             this.groupBox7.TabIndex = 7;
@@ -182,7 +219,7 @@
             // groupBox8
             // 
             this.groupBox8.Controls.Add(this.txtRoundedMonthlyCost);
-            this.groupBox8.Location = new System.Drawing.Point(212, 142);
+            this.groupBox8.Location = new System.Drawing.Point(212, 192);
             this.groupBox8.Name = "groupBox8";
             this.groupBox8.Size = new System.Drawing.Size(200, 54);
             this.groupBox8.TabIndex = 6;
@@ -200,7 +237,7 @@
             // groupBox9
             // 
             this.groupBox9.Controls.Add(this.txtRoundedWeeklyCost);
-            this.groupBox9.Location = new System.Drawing.Point(212, 82);
+            this.groupBox9.Location = new System.Drawing.Point(212, 132);
             this.groupBox9.Name = "groupBox9";
             this.groupBox9.Size = new System.Drawing.Size(200, 54);
             this.groupBox9.TabIndex = 5;
@@ -218,7 +255,7 @@
             // groupBox10
             // 
             this.groupBox10.Controls.Add(this.txtRoundedDailyCost);
-            this.groupBox10.Location = new System.Drawing.Point(212, 22);
+            this.groupBox10.Location = new System.Drawing.Point(212, 72);
             this.groupBox10.Name = "groupBox10";
             this.groupBox10.Size = new System.Drawing.Size(200, 54);
             this.groupBox10.TabIndex = 4;
@@ -236,7 +273,7 @@
             // groupBox6
             // 
             this.groupBox6.Controls.Add(this.txtYearlyCost);
-            this.groupBox6.Location = new System.Drawing.Point(6, 202);
+            this.groupBox6.Location = new System.Drawing.Point(6, 252);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(200, 54);
             this.groupBox6.TabIndex = 3;
@@ -254,7 +291,7 @@
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.txtMonthlyCost);
-            this.groupBox5.Location = new System.Drawing.Point(6, 142);
+            this.groupBox5.Location = new System.Drawing.Point(6, 192);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(200, 54);
             this.groupBox5.TabIndex = 2;
@@ -272,7 +309,7 @@
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.txtWeeklyCost);
-            this.groupBox4.Location = new System.Drawing.Point(6, 82);
+            this.groupBox4.Location = new System.Drawing.Point(6, 132);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(200, 54);
             this.groupBox4.TabIndex = 1;
@@ -290,7 +327,7 @@
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.txtDailyCost);
-            this.groupBox3.Location = new System.Drawing.Point(6, 22);
+            this.groupBox3.Location = new System.Drawing.Point(6, 72);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(200, 54);
             this.groupBox3.TabIndex = 0;
@@ -316,33 +353,11 @@
             this.btnRemoveAppliance.Text = "Remove Selected";
             this.btnRemoveAppliance.UseVisualStyleBackColor = true;
             // 
-            // txtApplianceUsageWatts
-            // 
-            this.txtApplianceUsageWatts.DecimalPlaces = 1;
-            this.txtApplianceUsageWatts.Location = new System.Drawing.Point(425, 55);
-            this.txtApplianceUsageWatts.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.txtApplianceUsageWatts.Name = "txtApplianceUsageWatts";
-            this.txtApplianceUsageWatts.Size = new System.Drawing.Size(120, 23);
-            this.txtApplianceUsageWatts.TabIndex = 5;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(290, 58);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(130, 15);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Usage Watts (Per Hour)";
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(615, 606);
+            this.ClientSize = new System.Drawing.Size(615, 652);
             this.Controls.Add(this.btnAddAppliance);
             this.Controls.Add(this.btnRemoveAppliance);
             this.Controls.Add(this.groupBox2);
@@ -352,6 +367,7 @@
             this.Text = "Device Energy Calculator";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtApplianceUsageWatts)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtApplianceWatts)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox7.ResumeLayout(false);
@@ -370,7 +386,6 @@
             this.groupBox4.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtApplianceUsageWatts)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -404,5 +419,6 @@
         private TextBox txtRoundedDailyCost;
         private NumericUpDown txtApplianceUsageWatts;
         private Label label3;
+        private ComboBox cbUsageType;
     }
 }

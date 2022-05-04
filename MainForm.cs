@@ -28,18 +28,32 @@ namespace EnergyCalculator
 
         private void lstAppliances_SelectedIndexChanged(object sender, EventArgs e)
         {
-            CalculateOnSingleDevice(lstAppliances.SelectedIndex);
+            if(!string.IsNullOrWhiteSpace(cbUsageType.Text))
+                CalculateOnSingleDevice(lstAppliances.SelectedIndex, cbUsageType.Text);
         }
 
-        private void CalculateOnSingleDevice(int deviceIndex)
+        private void CalculateOnSingleDevice(int deviceIndex, string usageType)
         {
             var appliances = lstAppliances.Items;
             var appliance = (Appliance)appliances[deviceIndex];
 
             if (appliance != null)
             {
-                var costPerDay = CalculationService.CalculateDailyCost(appliance.StandbyWatts, (decimal)0.27);
+                var costPerDay = CalculationService.CalculateDailyCost(GetUsageType(usageType, appliance), (decimal)0.27);
                 PopulateEnergyFields(costPerDay);
+            }
+        }
+
+        public decimal GetUsageType(string usageType, Appliance appliance)
+        {
+            switch(usageType)
+            {
+                case UsageType.FULL:
+                    return appliance.UsageWatts;
+                case UsageType.STANDBY:
+                    return appliance.StandbyWatts;
+                default:
+                    return appliance.UsageWatts;
             }
         }
 
@@ -67,6 +81,12 @@ namespace EnergyCalculator
 
             txtYearlyCost.Text = yearlyCost.ToString(); 
             txtRoundedYearlyCost.Text = roundedYearlyCost.ToString();
+        }
+
+        private void cbUsageType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lstAppliances.SelectedItems.Count > 0 && !string.IsNullOrWhiteSpace(cbUsageType.Text))
+                CalculateOnSingleDevice(lstAppliances.SelectedIndex, cbUsageType.Text);
         }
     }
 }
