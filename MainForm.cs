@@ -28,10 +28,15 @@ namespace EnergyCalculator
 
         private void lstAppliances_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var appliances = lstAppliances.Items;
-            var appliance = (Appliance)appliances[lstAppliances.SelectedIndex];
+            CalculateOnSingleDevice(lstAppliances.SelectedIndex);
+        }
 
-            if(appliance != null)
+        private void CalculateOnSingleDevice(int deviceIndex)
+        {
+            var appliances = lstAppliances.Items;
+            var appliance = (Appliance)appliances[deviceIndex];
+
+            if (appliance != null)
             {
                 var costPerDay = CalculationService.CalculateDailyCost(appliance.StandbyWatts, (decimal)0.27);
                 PopulateEnergyFields(costPerDay);
