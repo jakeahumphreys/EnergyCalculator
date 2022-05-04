@@ -344,7 +344,6 @@
             // 
             // btnRemoveAppliance
             // 
-            this.btnRemoveAppliance.Enabled = false;
             this.btnRemoveAppliance.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnRemoveAppliance.Location = new System.Drawing.Point(525, 298);
             this.btnRemoveAppliance.Name = "btnRemoveAppliance";
@@ -352,6 +351,7 @@
             this.btnRemoveAppliance.TabIndex = 3;
             this.btnRemoveAppliance.Text = "Remove Selected";
             this.btnRemoveAppliance.UseVisualStyleBackColor = true;
+            this.btnRemoveAppliance.Click += new System.EventHandler(this.btnRemoveAppliance_Click);
             // 
             // MainForm
             // 

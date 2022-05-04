@@ -28,7 +28,7 @@ namespace EnergyCalculator
 
         private void lstAppliances_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(!string.IsNullOrWhiteSpace(cbUsageType.Text))
+            if(!string.IsNullOrWhiteSpace(cbUsageType.Text) && lstAppliances.SelectedIndex > 0)
                 CalculateOnSingleDevice(lstAppliances.SelectedIndex, cbUsageType.Text);
         }
 
@@ -83,10 +83,31 @@ namespace EnergyCalculator
             txtRoundedYearlyCost.Text = roundedYearlyCost.ToString();
         }
 
+        private void ClearEnergyFields()
+        {
+            txtDailyCost.Clear();
+            txtRoundedDailyCost.Clear();
+            txtWeeklyCost.Clear();
+            txtRoundedWeeklyCost.Clear();
+            txtMonthlyCost.Clear();
+            txtRoundedMonthlyCost.Clear();
+            txtYearlyCost.Clear();
+            txtRoundedYearlyCost.Clear();
+        }
+
         private void cbUsageType_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (lstAppliances.SelectedItems.Count > 0 && !string.IsNullOrWhiteSpace(cbUsageType.Text))
                 CalculateOnSingleDevice(lstAppliances.SelectedIndex, cbUsageType.Text);
+        }
+
+        private void btnRemoveAppliance_Click(object sender, EventArgs e)
+        {
+            if(lstAppliances != null && lstAppliances.SelectedItems.Count > 0)
+            {
+                lstAppliances.Items.RemoveAt(lstAppliances.SelectedIndex);
+                ClearEnergyFields();
+            }
         }
     }
 }
