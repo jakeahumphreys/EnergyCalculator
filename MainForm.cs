@@ -28,7 +28,7 @@ namespace EnergyCalculator
 
         private void lstAppliances_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(!string.IsNullOrWhiteSpace(cbUsageType.Text) && lstAppliances.SelectedIndex > 0)
+            if(!string.IsNullOrWhiteSpace(cbUsageType.Text))
                 CalculateOnSingleDevice(lstAppliances.SelectedIndex, cbUsageType.Text);
         }
 
